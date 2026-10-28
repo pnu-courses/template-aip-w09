@@ -1,5 +1,6 @@
-## 실습 문제 1: 신호 세기 지형 만들기와 완전 탐색
 '''
+## 실습 문제 1: 신호 세기 지형 만들기와 완전 탐색
+
 드론이 직선 위를 오가며 지상 송신기의 신호 세기를 측정합니다. 신호 세기는 위치 `x` 하나로 결정되며, 세기가 강한 지점이 여러 곳에 흩어져 있습니다. 
 먼저 목적 함수와 그 지형을 만들고, 후보 지점을 하나도 빼지 않고 모두 재 보는 완전 탐색으로 신호가 가장 센 지점을 찾습니다. 완전 탐색은 모든 후보를 평가하므로 후보 중 최선을 반드시 찾지만, 후보의 수만큼 평가해야 합니다.
 
@@ -17,6 +18,27 @@
         - numpy 배열도 리스트처럼 `for x in candidates` 로 하나씩 꺼낼 수 있습니다
     3. -6부터 11까지를 500개로 나눈 `xs` 전체에서 전역 최댓값을, `x < 0` 인 후보와 `x > 6` 인 후보만 골라 넣어 지역 최댓값 두 개를 찾고, 곡선 위에 세 지점을 표시하세요. (힌트: `xs[xs < 0]`, `plt.plot`, `plt.scatter`, `plt.annotate`)
     4. -6과 11을 포함해 후보를 10개, 100개, 1000개로 바꿔 가며 완전 탐색하고, 찾은 위치와 신호가 평가 횟수에 따라 어떻게 달라지는지 비교하세요. 참 최댓값은 x ≈ 3.00, 신호 ≈ 1.000입니다. (힌트: `np.linspace(-6, 11, n)`)
+
+Practice Problem 1: Building a Signal-Strength Landscape and Brute-Force Search
+
+
+A drone flies back and forth along a straight line, measuring the signal strength of a ground transmitter. The signal strength is determined by a single position x, and there are several scattered points where the signal is strong.
+First, build the objective function and its landscape, then use brute-force search, which measures every single candidate point without skipping any, to find the point with the strongest signal. Because brute-force search evaluates every candidate, it is guaranteed to find the best among them, but it requires as many evaluations as there are candidates.
+
+Peak	Height A	Center c	Width sigma
+1	    1.00	    3.0	        1.0
+2	    0.60	    -2.0	    0.8
+3	    0.45	    7.5	        1.2
+
+Requirements:
+1. Complete signal_1d(x) by summing the three peaks in the table. It must work both when x is a real number and when it is a numpy array. (Hint: np.exp)
+2. Complete brute_force_1d(f, candidates), which evaluates every candidate in candidates one by one and returns the position with the strongest signal, that signal value, and the number of evaluations performed. (Hint: like brute_force_tsp in Theory Chapter 1, keep updating the best found so far)
+    - A whole function such as signal_1d is passed in as f, so inside the function you can simply call f(x) (Week 4, “Functions are objects too”). Example: brute_force_1d(signal_1d, xs)
+    - Like a list, a numpy array lets you take out its elements one at a time with for x in candidates
+3. Find the global maximum over all of xs, which divides the range from -6 to 11 into 500 points. Then find two local maxima by passing in only the candidates with x < 0 and only those with x > 6. Mark the three points on the curve. (Hint: xs[xs < 0], plt.plot, plt.scatter, plt.annotate)
+4. Run brute-force search with 10, 100, and 1000 candidates, each including -6 and 11, and compare how the position and signal found change with the number of evaluations. The true maximum is at x ≈ 3.00 with a signal of ≈ 1.000. (Hint: np.linspace(-6, 11, n))
+
+
 '''
 
 import numpy as np
