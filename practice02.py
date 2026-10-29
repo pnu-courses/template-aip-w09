@@ -45,7 +45,7 @@ $$ h(x, y) = \sum_k A_k \exp\left( -\frac{(x - cx_k)^2}{2 sx_k^2} - \frac{(y - c
 '''
 
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 
 # 아래 상수와 도우미 함수는 수정하지 말고 그대로 사용하세요.
