@@ -42,7 +42,7 @@ Requirements:
 '''
 
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 def signal_1d(x):
     # TODO: A * np.exp(-((x - c) ** 2) / (2 * sigma ** 2)) 꼴의 봉우리 세 개를 더해 반환하세요.
